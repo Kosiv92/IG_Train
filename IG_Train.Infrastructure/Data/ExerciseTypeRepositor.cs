@@ -4,12 +4,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace IG_Train.Infrastructure.Data
 {
-    public class ExerciseTypeRepositor : IRepository<ExerciseType>
+    public class ExerciseTypeRepository : IRepository<ExerciseType>
     {
         ApplicationDbContext _context;
         DbSet<ExerciseType> _exerciseTypes;
 
-        public ExerciseTypeRepositor(ApplicationDbContext context)
+        public ExerciseTypeRepository(ApplicationDbContext context)
         {
             _context = context;
             _exerciseTypes = _context.ExerciseTypes;

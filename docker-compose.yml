@@ -1,0 +1,24 @@
+version: '3.9'
+
+services:
+  ig_train.web:
+    container_name: ig.web
+    image: ${DOCKER_REGISTRY-}igtrainweb
+    build:
+      context: .
+      dockerfile: IG_Train.Web/Dockerfile
+    ports:
+        - "5000:5000"
+        - "5001:5001"
+    
+  postgres:
+    container_name: ig.database
+    image: postgres:16.2
+    environment:
+        POSTGRES_DB: "irongarage"
+        POSTGRES_USER: "postgres"
+        POSTGRES_PASSWORD: "postgres"
+    volumes:
+        - postgres-data:/var/lib/postgresql/data
+    ports:
+        - "5432:5432"

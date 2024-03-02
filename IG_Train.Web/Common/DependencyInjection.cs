@@ -9,6 +9,6 @@ namespace IG_Train.Web.Common
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
             return services;
-        }
+        }                
     }
 }
