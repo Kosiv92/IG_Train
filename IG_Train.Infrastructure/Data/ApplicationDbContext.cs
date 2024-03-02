@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace IG_Train.Infrastructure.Data
 {
-    internal class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : DbContext
     {
         public DbSet<ExerciseType> ExerciseTypes { get; set; } = null!;
 

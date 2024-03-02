@@ -1,7 +1,7 @@
 ﻿
 namespace IG_Train.Domain.Entities
 {
-    public class ExerciseType
+    public class ExerciseType : BaseEntity
     {
         public const int MIN_NAME_LENGTH = 3;
         public const int MAX_NAME_LENGTH = 100;
@@ -12,8 +12,7 @@ namespace IG_Train.Domain.Entities
             Name = name;
             Description = description;
         }
-
-        public int Id { get; private set; }
+        
         public string Name { get; private set; }
         public string Description { get; private set; }
 
