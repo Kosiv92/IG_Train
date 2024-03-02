@@ -3,9 +3,9 @@ namespace IG_Train.Domain.Entities
 {
     public class ExerciseType
     {
-        const int MIN_NAME_LENGTH = 3;
-        const int MAX_NAME_LENGTH = 100;
-        const int MAX_DESCRIPTION_LENGTH = 400;
+        public const int MIN_NAME_LENGTH = 3;
+        public const int MAX_NAME_LENGTH = 100;
+        public const int MAX_DESCRIPTION_LENGTH = 400;
 
         public ExerciseType(string name, string description)
         {            
