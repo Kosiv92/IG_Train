@@ -7,11 +7,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Controllers\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\IG_Train.Contracts\IG_Train.Contracts.csproj" />
+    <ProjectReference Include="..\IG_Train.Domain\IG_Train.Domain.csproj" />
+    <ProjectReference Include="..\IG_Train.Infrastructure\IG_Train.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

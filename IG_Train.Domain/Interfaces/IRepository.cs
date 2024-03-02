@@ -10,7 +10,7 @@ namespace IG_Train.Domain.Interfaces
 
         public Task<int> CreateAsync(T entity);
 
-        public Task DeleteAaync(int id);
+        public Task DeleteAsync(int id);
 
         public Task SaveChangesAsync();
 

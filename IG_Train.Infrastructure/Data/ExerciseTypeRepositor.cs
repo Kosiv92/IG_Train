@@ -22,7 +22,7 @@ namespace IG_Train.Infrastructure.Data
             return entity.Id;
         }
 
-        public async Task DeleteAaync(int id)
+        public async Task DeleteAsync(int id)
         {
             var entity = await _exerciseTypes.FirstOrDefaultAsync(x => x.Id == id);
 
