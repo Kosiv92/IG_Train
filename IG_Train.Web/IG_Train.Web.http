@@ -1,0 +1,6 @@
+@IG_Train.Web_HostAddress = http://localhost:5278
+
+GET {{IG_Train.Web_HostAddress}}//
+Accept: application/json
+
+###
