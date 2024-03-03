@@ -1,8 +1,8 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
-    <Nullable>enable</Nullable>
+    <Nullable>enable</Nullable>    
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>39644376-ecc5-44ff-8519-10a1348b3f34</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
@@ -16,10 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <ProjectReference Include="..\..\IG_Train.Application\IG_Train.Application.csproj" />
     <ProjectReference Include="..\IG_Train.Contracts\IG_Train.Contracts.csproj" />
     <ProjectReference Include="..\IG_Train.Domain\IG_Train.Domain.csproj" />
     <ProjectReference Include="..\IG_Train.Infrastructure\IG_Train.Infrastructure.csproj" />

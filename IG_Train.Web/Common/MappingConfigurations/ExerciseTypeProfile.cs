@@ -8,7 +8,7 @@ namespace IG_Train.Web.Common.MappingConfigurations
     {
         public ExerciseTypeProfile()
         {
-            CreateMap<ExerciseType, ExerciseTypeDto>();
+            CreateMap<ExerciseType, ExerciseTypeResponse>();
         }        
     }
 }

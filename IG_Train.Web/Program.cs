@@ -1,4 +1,5 @@
 using IG_Train.Web.Common;
+using IG_Train.Infrastructure.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +10,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddCommonServices(builder.Configuration);
+builder.Services.AddDataStorageServices(builder.Configuration);
 
 var app = builder.Build();
 

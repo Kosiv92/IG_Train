@@ -7,6 +7,9 @@ services:
     build:
       context: .
       dockerfile: IG_Train.Web/Dockerfile
+    depends_on:
+        - postgres
+    restart: always
     ports:
         - "5000:5000"
         - "5001:5001"
@@ -19,6 +22,6 @@ services:
         POSTGRES_USER: "postgres"
         POSTGRES_PASSWORD: "postgres"
     volumes:
-        - postgres-data:/var/lib/postgresql/data
+        - ./volumes/data/db:/var/lib/postgresql/data
     ports:
         - "5432:5432"
