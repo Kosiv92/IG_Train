@@ -14,5 +14,6 @@ namespace IG_Train.Domain.Interfaces
 
         public Task SaveChangesAsync();
 
+        public Task<int> UpdateAsync(T entity);
     }
 }

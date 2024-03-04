@@ -16,7 +16,7 @@ namespace IG_Train.Domain.Entities
         public string Name { get; private set; }
         public string Description { get; private set; }
 
-        public static (string error, ExerciseType exerciseType) Create(string name, string description)
+        public static (string error, ExerciseType exerciseType) Create(string name, string description = null!)
         {
             string error = string.Empty;
 
@@ -27,7 +27,7 @@ namespace IG_Train.Domain.Entities
                 error = "The length of the name must be in the range of 3-100 characters";
             }
             if (!string.IsNullOrEmpty(description)
-                && name.Length < MAX_DESCRIPTION_LENGTH)
+                && name.Length > MAX_DESCRIPTION_LENGTH)
             {
                 error += "\nThe length of the description can not be longer then 400 characters";
             }

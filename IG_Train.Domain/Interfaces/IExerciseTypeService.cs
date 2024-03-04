@@ -8,5 +8,7 @@ namespace IG_Train.Domain.Interfaces
         Task DeleteExerciseType(int id);
         Task<IEnumerable<ExerciseType>> GetAllExerciseTypes();
         Task<ExerciseType?> GetExerciseType(int id);
+
+        Task<int> UpdateExerciseType(ExerciseType exerciseType);
     }
 }

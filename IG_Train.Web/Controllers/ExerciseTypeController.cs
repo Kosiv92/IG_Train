@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using IG_Train.Contracts.DTO.ExerciseType;
+using IG_Train.Domain.Entities;
 using IG_Train.Domain.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -25,6 +26,37 @@ namespace IG_Train.Web.Controllers
             var exerciseTypesDtos = _mapper
                 .Map<IEnumerable<ExerciseTypeResponse>>(exerciseTypes);
             return Ok(exerciseTypesDtos);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<int?>> CreateExerciseType([FromBody] ExerciseTypeCreateRequest request)
+        {
+            var (error, exerciseType) = ExerciseType.Create(request.Name, request.Description!);
+
+            if (!string.IsNullOrEmpty(error))
+            {
+                return BadRequest(error);
+            }
+
+            int newExerciseTypeId = await _exerciseTypeService.CreateExerciseType(exerciseType);
+
+            return Ok(newExerciseTypeId);
+        }
+
+        [HttpPut("{id:int}")]
+        public async Task<ActionResult<int>> UpdateExerciseType(ExerciseTypeEditRequest request)
+        {
+            var exerciseType = _mapper
+                .Map<ExerciseType>(request);
+            
+            return await _exerciseTypeService.UpdateExerciseType(exerciseType);
+        }
+
+        [HttpDelete("{id:int}")]
+        public async Task<ActionResult> DeleteExerciseType(int id)
+        {
+            await _exerciseTypeService.DeleteExerciseType(id);
+            return Ok();
         }
     }
 }

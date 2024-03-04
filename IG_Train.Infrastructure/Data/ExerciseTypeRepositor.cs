@@ -50,5 +50,16 @@ namespace IG_Train.Infrastructure.Data
         {
             await _context.SaveChangesAsync();
         }
+
+        public async Task<int> UpdateAsync(ExerciseType entity)
+        {
+            await _exerciseTypes
+                .Where(et => et.Id == entity.Id)
+                .ExecuteUpdateAsync(et => et
+                .SetProperty(b => b.Name, b => entity.Name)
+                .SetProperty(b => b.Description, b => entity.Description));
+                
+            return entity.Id;
+        }
     }
 }
