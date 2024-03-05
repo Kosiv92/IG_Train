@@ -3,23 +3,23 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34622.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IG_Train.Web", "IG_Train.Web\IG_Train.Web.csproj", "{47A71D25-2ED7-4A56-AE6D-D960BA62BA21}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IG_Train.Web", "..\IG_Train\IG_Train.Web\IG_Train.Web.csproj", "{47A71D25-2ED7-4A56-AE6D-D960BA62BA21}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IG_Train.Domain", "IG_Train.Domain\IG_Train.Domain.csproj", "{D3BA346D-D5A5-4FA3-88CC-C11B61BC5327}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IG_Train.Domain", "..\IG_Train\IG_Train.Domain\IG_Train.Domain.csproj", "{D3BA346D-D5A5-4FA3-88CC-C11B61BC5327}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{39E07CF9-04B9-4EA5-8F9C-279EC855329A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{F63EC3B8-6997-49C5-AF3F-AB9D39311224}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IG_Train.Infrastructure", "IG_Train.Infrastructure\IG_Train.Infrastructure.csproj", "{0FFD24BE-FC7D-49D6-9B69-B84967EE76D7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IG_Train.Infrastructure", "..\IG_Train\IG_Train.Infrastructure\IG_Train.Infrastructure.csproj", "{0FFD24BE-FC7D-49D6-9B69-B84967EE76D7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IG_Train.Contracts", "IG_Train.Contracts\IG_Train.Contracts.csproj", "{FEC0A3ED-206C-408A-9FBB-4F86BA87A8D6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IG_Train.Contracts", "..\IG_Train\IG_Train.Contracts\IG_Train.Contracts.csproj", "{FEC0A3ED-206C-408A-9FBB-4F86BA87A8D6}"
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{A58E1524-D0F4-4DC8-83D0-A39E706CFFA4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IG_Train.Application", "..\IG_Train.Application\IG_Train.Application.csproj", "{C5ADE773-6746-4A8A-8217-CBA357B82418}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IG_Train.Application", "..\IG_Train\IG_Train.Application\IG_Train.Application.csproj", "{C5ADE773-6746-4A8A-8217-CBA357B82418}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IG_Train.Tests", "..\IG_Train.Tests\IG_Train.Tests.csproj", "{EC3AA6E4-F5AA-4630-90CF-71C404CF105E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IG_Train.Tests", "..\IG_Train\IG_Train.Tests\IG_Train.Tests.csproj", "{EC3AA6E4-F5AA-4630-90CF-71C404CF105E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

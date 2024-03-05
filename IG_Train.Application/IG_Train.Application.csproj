@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\IG_Train.Domain\IG_Train.Domain.csproj" />
+    <ProjectReference Include="..\IG_Train.Infrastructure\IG_Train.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>
