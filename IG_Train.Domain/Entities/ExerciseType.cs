@@ -7,7 +7,7 @@ namespace IG_Train.Domain.Entities
         public const int MAX_NAME_LENGTH = 100;
         public const int MAX_DESCRIPTION_LENGTH = 400;
 
-        public ExerciseType(string name, string description)
+        private ExerciseType(string name, string description)
         {            
             Name = name;
             Description = description;
