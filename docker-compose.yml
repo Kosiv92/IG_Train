@@ -5,7 +5,7 @@ services:
     container_name: ig.web
     image: ${DOCKER_REGISTRY-}igtrainweb
     build:
-      context: .
+      context: ./src
       dockerfile: IG_Train.Web/Dockerfile
     depends_on:
         - postgres
