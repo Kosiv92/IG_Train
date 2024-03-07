@@ -1,8 +1,8 @@
 ﻿namespace IG_Train.Domain.Entities;
 
-public class ExerciseType : BaseEntity<int>
+public class ExerciseTypeEntity : BaseEntity<int>
 {
-    public ExerciseType(int id, string name, string description)
+    public ExerciseTypeEntity(int id, string name, string description)
         : base(id)
     {            
         Name = name;

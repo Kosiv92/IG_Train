@@ -6,7 +6,7 @@ namespace IG_Train.Infrastructure.Data
 {
     public class ApplicationDbContext : DbContext
     {
-        public DbSet<ExerciseType> ExerciseTypes { get; set; } = null!;
+        public DbSet<ExerciseTypeEntity> ExerciseTypes { get; set; } = null!;
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {

@@ -4,10 +4,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace IG_Train.Infrastructure.Data
 {
-    public class ExerciseTypeRepository : IRepository<ExerciseType, int>
+    public class ExerciseTypeRepository : IRepository<ExerciseTypeEntity, int>
     {
         ApplicationDbContext _context;
-        DbSet<ExerciseType> _exerciseTypes;
+        DbSet<ExerciseTypeEntity> _exerciseTypes;
 
         public ExerciseTypeRepository(ApplicationDbContext context)
         {
@@ -15,7 +15,7 @@ namespace IG_Train.Infrastructure.Data
             _exerciseTypes = _context.ExerciseTypes;
         }
 
-        public async Task<int> CreateAsync(ExerciseType entity)
+        public async Task<int> CreateAsync(ExerciseTypeEntity entity)
         {
             await _exerciseTypes.AddAsync(entity);
             await _context.SaveChangesAsync();
@@ -33,14 +33,14 @@ namespace IG_Train.Infrastructure.Data
             await _context.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<ExerciseType>> GetAllAsync()
+        public async Task<IEnumerable<ExerciseTypeEntity>> GetAllAsync()
         {
             return await _exerciseTypes
                 .AsNoTracking()
                 .ToListAsync();
         }
 
-        public async Task<ExerciseType?> GetByIdAsync(int id)
+        public async Task<ExerciseTypeEntity?> GetByIdAsync(int id)
         {
             return await _exerciseTypes
                 .FirstOrDefaultAsync(x => x.Id == id);
@@ -51,7 +51,7 @@ namespace IG_Train.Infrastructure.Data
             await _context.SaveChangesAsync();
         }
 
-        public async Task<int> UpdateAsync(ExerciseType entity)
+        public async Task<int> UpdateAsync(ExerciseTypeEntity entity)
         {
             await _exerciseTypes
                 .Where(et => et.Id == entity.Id)

@@ -5,13 +5,13 @@ namespace IG_Train.Domain.Services;
 
 public interface IExerciseTypeService : ITransientService
 {
-    Task<int> CreateExerciseType(ExerciseType exerciseType);
+    Task<int> CreateExerciseType(ExerciseTypeEntity exerciseType);
 
     Task DeleteExerciseType(int id);
 
-    Task<IEnumerable<ExerciseType>> GetAllExerciseTypes();
+    Task<IEnumerable<ExerciseTypeEntity>> GetAllExerciseTypes();
 
-    Task<ExerciseType?> GetExerciseType(int id);
+    Task<ExerciseTypeEntity?> GetExerciseType(int id);
 
-    Task<int> UpdateExerciseType(ExerciseType exerciseType);
+    Task<int> UpdateExerciseType(ExerciseTypeEntity exerciseType);
 }

@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace IG_Train.Infrastructure.Configurations
 {
-    internal class ExerciseTypeConfiguration : IEntityTypeConfiguration<ExerciseType>
+    internal class ExerciseTypeConfiguration : IEntityTypeConfiguration<ExerciseTypeEntity>
     {
-        public void Configure(EntityTypeBuilder<ExerciseType> builder)
+        public void Configure(EntityTypeBuilder<ExerciseTypeEntity> builder)
         {
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Name)
