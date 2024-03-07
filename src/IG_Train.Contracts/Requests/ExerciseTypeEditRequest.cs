@@ -1,6 +1,6 @@
-﻿namespace IG_Train.Contracts.DTO.ExerciseType
+﻿namespace IG_Train.Contracts.Requests
 {
-    public record ExerciseTypeResponse
+    public record class ExerciseTypeEditRequest
     {
         public required int Id { get; init; }
         public required string Name { get; init; }

@@ -1,4 +1,4 @@
-﻿namespace IG_Train.Contracts.DTO.ExerciseType
+﻿namespace IG_Train.Contracts.Requests
 {
     public record class ExerciseTypeCreateRequest
     {

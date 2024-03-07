@@ -1,16 +1,15 @@
 ﻿using IG_Train.Domain.Entities;
-using IG_Train.Domain.Interfaces;
-using System.Security.Principal;
+using IG_Train.Domain.Repositories;
 
-namespace IG_Train.Application.Services
+namespace IG_Train.Domain.Services
 {
     public class ExerciseTypeService : IExerciseTypeService
     {
-        private readonly IRepository<ExerciseType> _repositoryET;
+        private readonly IRepository<ExerciseType, int> _repositoryET;
 
-        public ExerciseTypeService(IRepository<ExerciseType> repositoryET)
+        public ExerciseTypeService(IRepository<ExerciseType, int> repository)
         {
-            _repositoryET = repositoryET;
+            _repositoryET = repository;
         }
 
         public async Task<IEnumerable<ExerciseType>> GetAllExerciseTypes()

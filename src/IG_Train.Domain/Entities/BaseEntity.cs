@@ -1,7 +1,11 @@
-﻿namespace IG_Train.Domain.Entities
+﻿namespace IG_Train.Domain.Entities;
+
+public abstract class BaseEntity<TKey>
 {
-    public abstract class BaseEntity
+    protected BaseEntity(TKey key)
     {
-        public int Id { get; private set; }
+        Id = key;
     }
+
+    public TKey Id { get; }
 }

@@ -1,7 +1,7 @@
 ﻿using IG_Train.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
-namespace IG_Train.Web.Common
+namespace IG_Train.Web.Extensions
 {
     public static class MigrationExtensions
     {

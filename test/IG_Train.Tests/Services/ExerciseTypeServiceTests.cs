@@ -1,6 +1,6 @@
 ﻿using IG_Train.Application.Services;
 using IG_Train.Domain.Entities;
-using IG_Train.Domain.Interfaces;
+using IG_Train.Domain.Services;
 using IG_Train.Tests.ClassData.ExerciseType;
 using Moq;
 using Shouldly;

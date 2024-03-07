@@ -1,7 +1,8 @@
 ﻿using AutoMapper;
-using IG_Train.Contracts.DTO.ExerciseType;
+using IG_Train.Contracts.Requests;
+using IG_Train.Contracts.Responses;
 using IG_Train.Domain.Entities;
-using IG_Train.Domain.Interfaces;
+using IG_Train.Domain.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace IG_Train.Web.Controllers

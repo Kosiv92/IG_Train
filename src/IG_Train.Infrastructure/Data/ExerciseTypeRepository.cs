@@ -1,10 +1,10 @@
 ﻿using IG_Train.Domain.Entities;
-using IG_Train.Domain.Interfaces;
+using IG_Train.Domain.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 namespace IG_Train.Infrastructure.Data
 {
-    public class ExerciseTypeRepository : IRepository<ExerciseType>
+    public class ExerciseTypeRepository : IRepository<ExerciseType, int>
     {
         ApplicationDbContext _context;
         DbSet<ExerciseType> _exerciseTypes;

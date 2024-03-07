@@ -10,12 +10,10 @@ namespace IG_Train.Infrastructure.Configurations
         {
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Name)
-                .IsRequired()
-                .HasMaxLength(ExerciseType.MAX_NAME_LENGTH);
+                .IsRequired();
 
             builder.Property(x => x.Description)
-                .IsRequired(false)
-                .HasMaxLength(ExerciseType.MAX_DESCRIPTION_LENGTH);
+                .IsRequired(false);
         }
     }
 }
