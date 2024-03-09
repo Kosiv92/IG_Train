@@ -1,11 +1,20 @@
-﻿using MediatR;
+﻿using IG_Train.Domain.Services;
+using MediatR;
 
 namespace IG_Train.Application.Handlers.ExerciseType;
 
 public class DeleteExerciseTypeHandler : IRequestHandler<DeleteExerciseTypeRequest, DeleteExerciseTypeResponse>
 {
-    public Task<DeleteExerciseTypeResponse> Handle(DeleteExerciseTypeRequest request, CancellationToken cancellationToken)
+    private readonly IExerciseTypeService _exerciseTypeService;
+
+    public DeleteExerciseTypeHandler(IExerciseTypeService exerciseTypeService)
     {
-        throw new NotImplementedException();
+        _exerciseTypeService = exerciseTypeService;
+    }
+
+    public async Task<DeleteExerciseTypeResponse> Handle(DeleteExerciseTypeRequest request, CancellationToken cancellationToken)
+    {
+        await _exerciseTypeService.DeleteExerciseType(request.id, cancellationToken);
+        return new DeleteExerciseTypeResponse();
     }
 }

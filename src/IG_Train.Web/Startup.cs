@@ -25,12 +25,22 @@ public class Startup
         serviceCollection.AddMediatr();
     }
 
-    public void Configure(IApplicationBuilder applicationBuilder)
+    public void Configure(IApplicationBuilder applicationBuilder, IWebHostEnvironment env)
     {
         applicationBuilder.UseRouting();
-        applicationBuilder.UseSwagger();
-        applicationBuilder.UseSwaggerUI();
+        if (env.IsDevelopment())
+        {
+            applicationBuilder.UseSwagger();
+            applicationBuilder.UseSwaggerUI();
+        }        
         applicationBuilder.UseHttpsRedirection();
         applicationBuilder.UseAuthorization();
+
+        applicationBuilder.UseEndpoints(endpoints =>
+        {
+            endpoints.MapControllerRoute(
+            name: "default",
+            pattern: "{controller=ExerciseType}/{action=GetExerciseTypes}/{id?}");
+        });
     }
 }

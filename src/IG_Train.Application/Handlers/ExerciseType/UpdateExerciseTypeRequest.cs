@@ -2,4 +2,4 @@
 
 namespace IG_Train.Application.Handlers.ExerciseType;
 
-public record UpdateExerciseTypeRequest : IRequest<UpdateExerciseTypeResponse>;
+public record UpdateExerciseTypeRequest(int id, string Name, string Description) : IRequest<UpdateExerciseTypeResponse>;

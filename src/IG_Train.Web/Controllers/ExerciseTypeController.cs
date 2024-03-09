@@ -33,7 +33,7 @@ namespace IG_Train.Web.Controllers
 
         [HttpDelete]
         public Task<DeleteExerciseTypeResponse> DeleteExerciseType(
-            [FromRoute] DeleteExerciseTypeRequest request,
+            [FromBody] DeleteExerciseTypeRequest request,
             CancellationToken cancellationToken) =>
             _mediator.Send(request, cancellationToken);
     }

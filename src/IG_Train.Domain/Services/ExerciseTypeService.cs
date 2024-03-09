@@ -1,5 +1,6 @@
 ﻿using IG_Train.Domain.Entities;
 using IG_Train.Domain.Repositories;
+using System.Threading;
 
 namespace IG_Train.Domain.Services
 {
@@ -12,29 +13,29 @@ namespace IG_Train.Domain.Services
             _repositoryET = repository;
         }
 
-        public async Task<IEnumerable<ExerciseTypeEntity>> GetAllExerciseTypes()
+        public async Task<IEnumerable<ExerciseTypeEntity>> GetAllExerciseTypes(CancellationToken cancellationToken = default)
         {
-            return await _repositoryET.GetAllAsync();
+            return await _repositoryET.GetAllAsync(cancellationToken);
         }
 
-        public async Task<ExerciseTypeEntity?> GetExerciseType(int id)
+        public async Task<ExerciseTypeEntity?> GetExerciseType(int id, CancellationToken cancellationToken = default)
         {
-            return await _repositoryET.GetByIdAsync(id);
+            return await _repositoryET.GetByIdAsync(id, cancellationToken);
         }
 
-        public async Task<int> CreateExerciseType(ExerciseTypeEntity exerciseType)
+        public async Task<int> CreateExerciseType(ExerciseTypeEntity exerciseType, CancellationToken cancellationToken = default)
         {
-            return await _repositoryET.CreateAsync(exerciseType);
+            return await _repositoryET.CreateAsync(exerciseType, cancellationToken);
         }
 
-        public async Task DeleteExerciseType(int id)
+        public async Task DeleteExerciseType(int id, CancellationToken cancellationToken = default)
         {
-            await _repositoryET.DeleteAsync(id);
+            await _repositoryET.DeleteAsync(id, cancellationToken);
         }
 
-        public async Task<int> UpdateExerciseType(ExerciseTypeEntity exerciseType)
+        public async Task<int> UpdateExerciseType(ExerciseTypeEntity exerciseType, CancellationToken cancellationToken = default)
         {
-            return await _repositoryET.UpdateAsync(exerciseType);
+            return await _repositoryET.UpdateAsync(exerciseType, cancellationToken);
         }
     }
 }

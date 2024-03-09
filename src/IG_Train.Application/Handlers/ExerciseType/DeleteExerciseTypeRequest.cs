@@ -2,4 +2,4 @@
 
 namespace IG_Train.Application.Handlers.ExerciseType;
 
-public record DeleteExerciseTypeRequest : IRequest<DeleteExerciseTypeResponse>;
+public record DeleteExerciseTypeRequest(int id) : IRequest<DeleteExerciseTypeResponse>;
