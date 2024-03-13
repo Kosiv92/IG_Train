@@ -16,14 +16,14 @@ namespace IG_Train.Infrastructure.Data
             _exerciseTypes = _context.ExerciseTypes;
         }
 
-        public async Task<int> CreateAsync(ExerciseTypeEntity entity, CancellationToken cancellationToken = default)
+        public async Task<int> CreateAsync(ExerciseTypeEntity entity, CancellationToken cancellationToken)
         {
             await _exerciseTypes.AddAsync(entity, cancellationToken);
             await SaveChangesAsync(cancellationToken);
             return entity.Id;
         }
 
-        public async Task DeleteAsync(int id, CancellationToken cancellationToken = default)
+        public async Task DeleteAsync(int id, CancellationToken cancellationToken)
         {
             var entity = await _exerciseTypes.FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
 
@@ -34,25 +34,25 @@ namespace IG_Train.Infrastructure.Data
             await SaveChangesAsync(cancellationToken);
         }
 
-        public async Task<IEnumerable<ExerciseTypeEntity>> GetAllAsync(CancellationToken cancellationToken = default)
+        public async Task<IEnumerable<ExerciseTypeEntity>> GetAllAsync(CancellationToken cancellationToken)
         {
             return await _exerciseTypes
                 .AsNoTracking()
                 .ToListAsync(cancellationToken);
         }
 
-        public async Task<ExerciseTypeEntity?> GetByIdAsync(int id, CancellationToken cancellationToken = default)
+        public async Task<ExerciseTypeEntity?> GetByIdAsync(int id, CancellationToken cancellationToken)
         {
             return await _exerciseTypes
                 .FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
         }
 
-        public async Task SaveChangesAsync(CancellationToken cancellationToken = default)
+        public async Task SaveChangesAsync(CancellationToken cancellationToken)
         {
             await _context.SaveChangesAsync(cancellationToken);
         }
 
-        public async Task<int> UpdateAsync(ExerciseTypeEntity entity, CancellationToken cancellationToken = default)
+        public async Task<int> UpdateAsync(ExerciseTypeEntity entity, CancellationToken cancellationToken)
         {
             await _exerciseTypes
                 .Where(et => et.Id == entity.Id)

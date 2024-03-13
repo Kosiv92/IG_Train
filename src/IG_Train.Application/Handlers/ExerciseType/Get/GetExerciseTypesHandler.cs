@@ -14,7 +14,7 @@ public class GetExerciseTypesHandler : IRequestHandler<GetExerciseTypesRequest, 
 
     public async Task<GetExerciseTypesResponse> Handle(GetExerciseTypesRequest request, CancellationToken cancellationToken)
     {
-        var exerciseTypes = await _exerciseTypeService.GetAllExerciseTypes();
+        var exerciseTypes = await _exerciseTypeService.GetAllExerciseTypes(cancellationToken);
         return new GetExerciseTypesResponse(exerciseTypes);
     }
 }
