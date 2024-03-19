@@ -6,36 +6,36 @@ namespace IG_Train.Domain.Services
 {
     public class ExerciseTypeService : IExerciseTypeService
     {
-        private readonly IRepository<ExerciseTypeEntity, int> _repositoryET;
+        private readonly IRepository<ExerciseTypeEntity, int> _exerciseTypeRepository;
 
         public ExerciseTypeService(IRepository<ExerciseTypeEntity, int> repository)
         {
-            _repositoryET = repository;
+            _exerciseTypeRepository = repository;
         }
 
         public async Task<IEnumerable<ExerciseTypeEntity>> GetAllExerciseTypes(CancellationToken cancellationToken)
         {
-            return await _repositoryET.GetAllAsync(cancellationToken);
+            return await _exerciseTypeRepository.GetAllAsync(cancellationToken);
         }
 
         public async Task<ExerciseTypeEntity?> GetExerciseType(int id, CancellationToken cancellationToken)
         {
-            return await _repositoryET.GetByIdAsync(id, cancellationToken);
+            return await _exerciseTypeRepository.GetByIdAsync(id, cancellationToken);
         }
 
         public async Task<int> CreateExerciseType(ExerciseTypeEntity exerciseType, CancellationToken cancellationToken)
         {
-            return await _repositoryET.CreateAsync(exerciseType, cancellationToken);
+            return await _exerciseTypeRepository.CreateAsync(exerciseType, cancellationToken);
         }
 
         public async Task DeleteExerciseType(int id, CancellationToken cancellationToken)
         {
-            await _repositoryET.DeleteAsync(id, cancellationToken);
+            await _exerciseTypeRepository.DeleteAsync(id, cancellationToken);
         }
 
         public async Task<int> UpdateExerciseType(ExerciseTypeEntity exerciseType, CancellationToken cancellationToken)
         {
-            return await _repositoryET.UpdateAsync(exerciseType, cancellationToken);
+            return await _exerciseTypeRepository.UpdateAsync(exerciseType, cancellationToken);
         }
     }
 }

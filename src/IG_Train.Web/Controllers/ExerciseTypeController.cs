@@ -1,6 +1,9 @@
-﻿using IG_Train.Application.Handlers.ExerciseType;
+﻿using FluentValidation;
+using IG_Train.Application.Handlers.ExerciseType;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
+using System.ComponentModel.DataAnnotations;
 
 namespace IG_Train.Web.Controllers
 {
@@ -20,17 +23,17 @@ namespace IG_Train.Web.Controllers
             _mediator.Send(new GetExerciseTypesRequest(), cancellationToken);
 
         [HttpPost]
-        public Task<CreateExerciseTypeResponse> CreateExerciseType(
+        public async Task<ActionResult<CreateExerciseTypeResponse>> CreateExerciseTypeAsync(
             [FromBody] CreateExerciseTypeRequest request,
-            CancellationToken cancellationToken) =>
-            _mediator.Send(request, cancellationToken);
-
+            CancellationToken cancellationToken)
+            => await _mediator.Send(request, cancellationToken);
+            
         [HttpPut]
-        public Task<UpdateExerciseTypeResponse> UpdateExerciseType(
+        public async Task<ActionResult<UpdateExerciseTypeResponse>> UpdateExerciseType(
             [FromBody] UpdateExerciseTypeRequest request,
-            CancellationToken cancellationToken) =>
-            _mediator.Send(request, cancellationToken);
-
+            CancellationToken cancellationToken)
+            => await _mediator.Send(request, cancellationToken);
+        
         [HttpDelete]
         public Task<DeleteExerciseTypeResponse> DeleteExerciseType(
             [FromBody] DeleteExerciseTypeRequest request,

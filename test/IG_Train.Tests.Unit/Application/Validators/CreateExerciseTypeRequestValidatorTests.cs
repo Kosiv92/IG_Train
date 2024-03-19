@@ -31,7 +31,7 @@ namespace IG_Train.Tests.Unit.Application.Validators
 
         [Theory]
         [AutoData]
-        public void Validate_IncorrectRequest_NotValida(
+        public void Validate_IncorrectRequest_NotValid(
             Fixture fixture,
             CreateExerciseTypeRequestValidator sut)
         {

@@ -1,10 +1,12 @@
 ﻿using FluentValidation;
+using FluentValidation.AspNetCore;
 using IG_Train.Application;
 using IG_Train.Domain;
 using IG_Train.Domain.Repositories.Common;
 using IG_Train.Domain.Services.Common;
 using IG_Train.Infrastructure;
 using IG_Train.Infrastructure.Data;
+using MediatR.Extensions.FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace IG_Train.Web.Extensions;
@@ -66,11 +68,12 @@ public static class ServiceCollectionExtensions
     }
 
     internal static IServiceCollection AddValidation(this IServiceCollection services) 
-    {
+    {        
         services.AddValidatorsFromAssemblies([
             typeof(IApplicationAssembly).Assembly,
             typeof(IInfrastructureAssembly).Assembly,
             typeof(IDomainAssembly).Assembly]);
+        services.AddFluentValidationAutoValidation();
 
         return services;
     }

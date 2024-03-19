@@ -8,6 +8,9 @@ internal class ApplicationMappingProfile : Profile
 {
     public ApplicationMappingProfile()
     {
-        CreateMap<UpdateExerciseTypeRequest, ExerciseTypeEntity>();
+        CreateMap<UpdateExerciseTypeRequest, ExerciseTypeEntity>()
+            .ForMember(d => d.Id, opt => opt.MapFrom(src => src.Id))
+            .ForMember(d => d.Name, opt => opt.MapFrom(src => src.Name))
+            .ForMember(d => d.Description, opt => opt.MapFrom(src => src.Description));
     }
 }
