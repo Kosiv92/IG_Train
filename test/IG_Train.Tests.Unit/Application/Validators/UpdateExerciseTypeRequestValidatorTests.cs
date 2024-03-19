@@ -27,33 +27,9 @@ namespace IG_Train.Tests.Unit.Application.Validators
             result.IsValid.Should().Be(expectedResult);
         }
 
-
-        //[Theory]
-        //[AutoData]
-        //public void Validate_CorrectRequest_NoErrors(
-        //    Fixture fixture,
-        //    UpdateExerciseTypeRequestValidator sut)
-        //{
-        //    // Arrange
-        //    var request = fixture
-        //        .Build<UpdateExerciseTypeRequest>()
-        //        .With(x => x.id, fixture.Create<int>())
-        //        .With(x => x.Name, fixture.Create<string>())
-        //        .With(x => x.Description, fixture.Create<string>())
-        //        .Create();
-
-        //    // Act
-        //    var result = sut.Validate(request);
-
-        //    // Assert
-        //    result.IsValid.Should().BeTrue();
-        //}
-
         [Theory]
         [AutoData]
-        public void Validate_IncorrectRequest_NotValid(
-            Fixture fixture,
-            UpdateExerciseTypeRequestValidator sut)
+        public void Validate_IncorrectRequest_NotValid(UpdateExerciseTypeRequestValidator sut)
         {
             // Arrange
             var request = new UpdateExerciseTypeRequest(default, string.Empty, string.Empty);
