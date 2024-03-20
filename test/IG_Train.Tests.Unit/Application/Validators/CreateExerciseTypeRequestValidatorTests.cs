@@ -3,6 +3,7 @@ using AutoFixture.Xunit2;
 using FluentAssertions;
 using IG_Train.Application.Handlers.ExerciseType;
 using IG_Train.Application.Validators;
+using IG_Train.Tests.Unit.Application.Validators.ClassData;
 using Xunit;
 
 namespace IG_Train.Tests.Unit.Application.Validators
@@ -10,37 +11,35 @@ namespace IG_Train.Tests.Unit.Application.Validators
     public class CreateExerciseTypeRequestValidatorTests
     {
         [Theory]
-        [AutoData]
-        public void Validate_CorrectRequest_NoErrors(
-            Fixture fixture,
-            CreateExerciseTypeRequestValidator sut)
+        [ClassData(typeof(CreateExerciseTypeRequestTestData))]
+        public void Validate_CreateExerciseTypeRequest_ReturnExpectedResult(
+            string name, string description, bool expectedResult)
         {
             // Arrange
-            var request = fixture
-                .Build<CreateExerciseTypeRequest>()
-                .With(x => x.Name, fixture.Create<string>())
-                .With(x => x.Description, fixture.Create<string>())
-                .Create();
+            CreateExerciseTypeRequestValidator sut = new CreateExerciseTypeRequestValidator();
+            var request = new CreateExerciseTypeRequest(name, description);
 
             // Act
             var result = sut.Validate(request);
 
             // Assert
-            result.IsValid.Should().BeTrue();
+            result.IsValid.Should().Be(expectedResult);
         }
 
         [Theory]
-        [AutoData]
-        public void Validate_IncorrectRequest_NotValid(CreateExerciseTypeRequestValidator sut)
+        [ClassData(typeof(CreateExerciseTypeRequestTestData))]
+        public async Task ValidateAsync_CreateExerciseTypeRequest_ReturnExpectedResult(
+            string name, string description, bool expectedResult)
         {
             // Arrange
-            var request = new CreateExerciseTypeRequest(string.Empty, string.Empty);
+            CreateExerciseTypeRequestValidator sut = new CreateExerciseTypeRequestValidator();
+            var request = new CreateExerciseTypeRequest(name, description);
 
             // Act
-            var result = sut.Validate(request);
+            var result = await sut.ValidateAsync(request);
 
             // Assert
-            result.IsValid.Should().BeFalse();
+            result.IsValid.Should().Be(expectedResult);
         }
     }
 }

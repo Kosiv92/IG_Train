@@ -9,8 +9,7 @@ public class CreateExerciseTypeRequestValidator
 {
     public CreateExerciseTypeRequestValidator()
     {
-        RuleFor(x => x.Name)
-        .NotNull()
+        RuleFor(x => x.Name)        
         .NotEmpty()
             .WithMessage("{PropertyName} must not be null or empty");
     }

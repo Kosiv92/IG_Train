@@ -14,7 +14,7 @@ namespace IG_Train.Tests.Unit.Application.Validators
         [Theory]
         [ClassData(typeof(UpdateExerciseTypeRequestTestData))]
 
-        public void Validate_CorrectRequest_NoErrors(int id, string name, string description, bool expectedResult)
+        public void Validate_UpdateExerciseTypeRequest_ReturnExpectedResult(int id, string name, string description, bool expectedResult)
         {
             // Arrange
             UpdateExerciseTypeRequestValidator sut = new UpdateExerciseTypeRequestValidator();
@@ -28,17 +28,21 @@ namespace IG_Train.Tests.Unit.Application.Validators
         }
 
         [Theory]
-        [AutoData]
-        public void Validate_IncorrectRequest_NotValid(UpdateExerciseTypeRequestValidator sut)
+        [ClassData(typeof(UpdateExerciseTypeRequestTestData))]
+
+        public async Task ValidateAsync_UpdateExerciseTypeRequest_ReturnExpectedResult(int id, string name, string description, bool expectedResult)
         {
             // Arrange
-            var request = new UpdateExerciseTypeRequest(default, string.Empty, string.Empty);
+            UpdateExerciseTypeRequestValidator sut = new UpdateExerciseTypeRequestValidator();
+            var request = new UpdateExerciseTypeRequest(id, name, description);
 
             // Act
-            var result = sut.Validate(request);
+            var result = await sut.ValidateAsync(request);
 
             // Assert
-            result.IsValid.Should().BeFalse();
+            result.IsValid.Should().Be(expectedResult);
         }
+
+
     }
 }
