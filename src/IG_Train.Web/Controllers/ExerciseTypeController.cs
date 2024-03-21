@@ -1,8 +1,9 @@
-﻿using AutoMapper;
-using IG_Train.Contracts.DTO.ExerciseType;
-using IG_Train.Domain.Entities;
-using IG_Train.Domain.Interfaces;
+﻿using FluentValidation;
+using IG_Train.Application.Handlers.ExerciseType;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
+using System.ComponentModel.DataAnnotations;
 
 namespace IG_Train.Web.Controllers
 {
@@ -10,53 +11,33 @@ namespace IG_Train.Web.Controllers
     [Route("[controller]")]
     public class ExerciseTypeController : ControllerBase
     {
-        private readonly IExerciseTypeService _exerciseTypeService;
-        private readonly IMapper _mapper;
+        private readonly IMediator _mediator;
 
-        public ExerciseTypeController(IExerciseTypeService exerciseTypeService, IMapper mapper)
+        public ExerciseTypeController(IMediator mediator)
         {
-            _exerciseTypeService = exerciseTypeService;
-            _mapper = mapper;
+            _mediator = mediator;
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<ExerciseTypeResponse>>> GetExerciseTypes()
-        {
-            var exerciseTypes = await _exerciseTypeService.GetAllExerciseTypes();
-            var exerciseTypesDtos = _mapper
-                .Map<IEnumerable<ExerciseTypeResponse>>(exerciseTypes);
-            return Ok(exerciseTypesDtos);
-        }
+        public Task<GetExerciseTypesResponse> GetExerciseTypes(CancellationToken cancellationToken) =>
+            _mediator.Send(new GetExerciseTypesRequest(), cancellationToken);
 
         [HttpPost]
-        public async Task<ActionResult<int?>> CreateExerciseType([FromBody] ExerciseTypeCreateRequest request)
-        {
-            var (error, exerciseType) = ExerciseType.Create(request.Name, request.Description!);
-
-            if (!string.IsNullOrEmpty(error))
-            {
-                return BadRequest(error);
-            }
-
-            int newExerciseTypeId = await _exerciseTypeService.CreateExerciseType(exerciseType);
-
-            return Ok(newExerciseTypeId);
-        }
-
-        [HttpPut("{id:int}")]
-        public async Task<ActionResult<int>> UpdateExerciseType(ExerciseTypeEditRequest request)
-        {
-            var exerciseType = _mapper
-                .Map<ExerciseType>(request);
+        public Task<CreateExerciseTypeResponse> CreateExerciseTypeAsync(
+            [FromBody] CreateExerciseTypeRequest request,
+            CancellationToken cancellationToken)
+            => _mediator.Send(request, cancellationToken);
             
-            return await _exerciseTypeService.UpdateExerciseType(exerciseType);
-        }
-
-        [HttpDelete("{id:int}")]
-        public async Task<ActionResult> DeleteExerciseType(int id)
-        {
-            await _exerciseTypeService.DeleteExerciseType(id);
-            return Ok();
-        }
+        [HttpPut]
+        public Task<UpdateExerciseTypeResponse> UpdateExerciseType(
+            [FromBody] UpdateExerciseTypeRequest request,
+            CancellationToken cancellationToken)
+            => _mediator.Send(request, cancellationToken);
+        
+        [HttpDelete]
+        public Task<DeleteExerciseTypeResponse> DeleteExerciseType(
+            [FromBody] DeleteExerciseTypeRequest request,
+            CancellationToken cancellationToken) =>
+            _mediator.Send(request, cancellationToken);
     }
 }

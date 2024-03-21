@@ -1,25 +1,28 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
-  <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-    <Nullable>enable</Nullable>    
-    <ImplicitUsings>enable</ImplicitUsings>
-    <UserSecretsId>39644376-ecc5-44ff-8519-10a1348b3f34</UserSecretsId>
-    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
-    <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<UserSecretsId>39644376-ecc5-44ff-8519-10a1348b3f34</UserSecretsId>
+		<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+		<DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="13.0.1" />
-    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.19.6" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="AutoMapper" Version="13.0.1" />
+		<PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
+		<PackageReference Include="MediatR" Version="12.2.0" />
+		<PackageReference Include="MediatR.Extensions.FluentValidation.AspNetCore" Version="5.1.0" />
+		<PackageReference Include="Scrutor" Version="4.2.2" />
+		<PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.9.0" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\IG_Train.Application\IG_Train.Application.csproj" />
-    <ProjectReference Include="..\IG_Train.Contracts\IG_Train.Contracts.csproj" />
-    <ProjectReference Include="..\IG_Train.Domain\IG_Train.Domain.csproj" />
-    <ProjectReference Include="..\IG_Train.Infrastructure\IG_Train.Infrastructure.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\IG_Train.Application\IG_Train.Application.csproj" />
+		<ProjectReference Include="..\IG_Train.Domain\IG_Train.Domain.csproj" />
+		<ProjectReference Include="..\IG_Train.Infrastructure\IG_Train.Infrastructure.csproj" />
+	</ItemGroup>
 
 </Project>
