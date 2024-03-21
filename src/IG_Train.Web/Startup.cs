@@ -14,9 +14,8 @@ public class Startup
     public void ConfigureServices(IServiceCollection serviceCollection)
     {
         serviceCollection.AddControllers();
-        serviceCollection.AddEndpointsApiExplorer();
-        serviceCollection.AddSwaggerGen();
 
+        serviceCollection.AddApiExploreService();
         serviceCollection.AddAutoMapping();
         serviceCollection.AddDbContexts(_configuration);
         serviceCollection.AddServices();
