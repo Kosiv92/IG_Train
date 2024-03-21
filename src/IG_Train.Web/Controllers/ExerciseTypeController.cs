@@ -23,16 +23,16 @@ namespace IG_Train.Web.Controllers
             _mediator.Send(new GetExerciseTypesRequest(), cancellationToken);
 
         [HttpPost]
-        public async Task<ActionResult<CreateExerciseTypeResponse>> CreateExerciseTypeAsync(
+        public Task<CreateExerciseTypeResponse> CreateExerciseTypeAsync(
             [FromBody] CreateExerciseTypeRequest request,
             CancellationToken cancellationToken)
-            => await _mediator.Send(request, cancellationToken);
+            => _mediator.Send(request, cancellationToken);
             
         [HttpPut]
-        public async Task<ActionResult<UpdateExerciseTypeResponse>> UpdateExerciseType(
+        public Task<UpdateExerciseTypeResponse> UpdateExerciseType(
             [FromBody] UpdateExerciseTypeRequest request,
             CancellationToken cancellationToken)
-            => await _mediator.Send(request, cancellationToken);
+            => _mediator.Send(request, cancellationToken);
         
         [HttpDelete]
         public Task<DeleteExerciseTypeResponse> DeleteExerciseType(
