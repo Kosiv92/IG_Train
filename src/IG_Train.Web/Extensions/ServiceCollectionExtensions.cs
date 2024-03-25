@@ -8,11 +8,46 @@ using IG_Train.Infrastructure;
 using IG_Train.Infrastructure.Data;
 using MediatR.Extensions.FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.OpenApi.Models;
+using System.Reflection;
 
 namespace IG_Train.Web.Extensions;
 
 public static class ServiceCollectionExtensions
 {
+    internal static IServiceCollection AddApiExploreService(this IServiceCollection services)
+    {
+        services.AddEndpointsApiExplorer();
+        services.AddSwaggerGen(options =>
+        {
+            options.SwaggerDoc("v1", new OpenApiInfo
+            {
+                Version = "v1",
+                Title = "IronGarage API",
+                Description = "An ASP.NET Core Web API for storing training data",
+                Contact = new OpenApiContact
+                {
+                    Name = "Konstantin Sivkov",
+                    Email = "kosiv92@gmail.com"
+                },
+                License = new OpenApiLicense
+                {
+                    Name = "MIT License",
+                    Url = new Uri("https://opensource.org/license/mit")
+                }
+            });
+
+            var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+            options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
+
+            options.EnableAnnotations();
+        });
+
+        return services;
+    }
+
+
     internal static IServiceCollection AddAutoMapping(this IServiceCollection services) 
     {
         services.AddAutoMapper(
