@@ -1,11 +1,7 @@
-﻿using FluentValidation;
-using IG_Train.Application.Handlers.ExerciseType;
+﻿using IG_Train.Application.Handlers.ExerciseType;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Swashbuckle.AspNetCore.Annotations;
-using System.ComponentModel.DataAnnotations;
-using System.Threading;
 
 namespace IG_Train.Web.Controllers
 {
@@ -19,6 +15,27 @@ namespace IG_Train.Web.Controllers
         {
             _mediator = mediator;
         }
+
+        /// <summary>
+        /// Get exercise type data
+        /// </summary>
+        /// <param name="id">ID of the exercise type that needs to be obtained </param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        [SwaggerResponse(200, "Exercise type data", typeof(GetExerciseTypeResponse))]
+        [SwaggerResponse(404, "The exercise type is not found")]
+        [SwaggerResponse(400, "The exercise type data is invalid")]
+        [Produces("application/json")]
+        [Consumes("application/json")]
+        [HttpGet("{id:int}")]
+        public async Task<ActionResult<GetExerciseTypeResponse>> GetExerciseType(int id, 
+            CancellationToken cancellationToken)
+        {            
+            var result = await _mediator.Send(new GetExerciseTypeRequest(id), cancellationToken);
+            if (result.exerciseType is null) return NotFound();  
+            return Ok(result); 
+        }
+            
 
         /// <summary>
         /// Get collection of exercise types
@@ -56,8 +73,7 @@ namespace IG_Train.Web.Controllers
         [HttpPost]
         public ActionResult<Task<CreateExerciseTypeResponse>> CreateExerciseTypeAsync(
             [FromBody] CreateExerciseTypeRequest request,
-            CancellationToken cancellationToken)
-            //=> await _mediator.Send(request, cancellationToken);
+            CancellationToken cancellationToken)            
         => CreatedAtAction(nameof(CreateExerciseTypeAsync), request, _mediator.Send(request, cancellationToken));
 
         /// <summary>

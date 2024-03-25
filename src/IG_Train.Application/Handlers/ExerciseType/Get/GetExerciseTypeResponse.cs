@@ -2,4 +2,4 @@
 
 namespace IG_Train.Application.Handlers.ExerciseType;
 
-public record GetExerciseTypeResponse(ExerciseTypeEntity exerciseType);
+public record GetExerciseTypeResponse(ExerciseTypeEntity? exerciseType);
