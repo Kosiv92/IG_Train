@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace IG_Train.Web.Controllers
-{
+{    
     [ApiController]
     [Route("api/v1/[controller]")]
     public class ExerciseTypeController : ControllerBase
@@ -24,9 +24,7 @@ namespace IG_Train.Web.Controllers
         /// <returns></returns>
         [SwaggerResponse(200, "Exercise type data", typeof(GetExerciseTypeResponse))]
         [SwaggerResponse(404, "The exercise type is not found")]
-        [SwaggerResponse(400, "The exercise type data is invalid")]
-        [Produces("application/json")]
-        [Consumes("application/json")]
+        [SwaggerResponse(400, "The exercise type data is invalid")]       
         [HttpGet("{id:int}")]
         public async Task<ActionResult<GetExerciseTypeResponse>> GetExerciseType(int id, 
             CancellationToken cancellationToken)
@@ -43,9 +41,7 @@ namespace IG_Train.Web.Controllers
         /// <param name="cancellationToken"></param>
         /// <returns>Collection of exercise types</returns>
         [SwaggerResponse(200, "Collection of exercise types", typeof(GetExerciseTypesResponse))]
-        [SwaggerResponse(400, "The exercise type data is invalid")]
-        [Produces("application/json")]
-        [Consumes("application/json")]
+        [SwaggerResponse(400, "The exercise type data is invalid")]        
         [HttpGet]
         public Task<GetExerciseTypesResponse> GetExerciseTypes(CancellationToken cancellationToken) =>
             _mediator.Send(new GetExerciseTypesRequest(), cancellationToken);
@@ -67,9 +63,7 @@ namespace IG_Train.Web.Controllers
         ///
         /// </remarks>        
         [SwaggerResponse(201, "The exercise type was created", typeof(CreateExerciseTypeResponse))]
-        [SwaggerResponse(400, "The exercise type data is invalid")]
-        [Produces("application/json")]
-        [Consumes("application/json")]
+        [SwaggerResponse(400, "The exercise type data is invalid")]        
         [HttpPost]
         public ActionResult<Task<CreateExerciseTypeResponse>> CreateExerciseTypeAsync(
             [FromBody] CreateExerciseTypeRequest request,
@@ -94,9 +88,7 @@ namespace IG_Train.Web.Controllers
         ///
         /// </remarks>       
         [SwaggerResponse(200, "The exercise type was updated succefully", typeof(UpdateExerciseTypeResponse))]
-        [SwaggerResponse(400, "The exercise type update is failed")]
-        [Produces("application/json")]
-        [Consumes("application/json")]
+        [SwaggerResponse(400, "The exercise type update is failed")]        
         [HttpPut]
         public Task<UpdateExerciseTypeResponse> UpdateExerciseType(
             [FromBody] UpdateExerciseTypeRequest request,
@@ -110,9 +102,7 @@ namespace IG_Train.Web.Controllers
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
         [SwaggerResponse(200, "The exercise type was delete succefully", typeof(DeleteExerciseTypeResponse))]
-        [SwaggerResponse(400, "The exercise type delete is failed")]
-        [Produces("application/json")]
-        [Consumes("application/json")]
+        [SwaggerResponse(400, "The exercise type delete is failed")]        
         [HttpDelete]
         public Task<DeleteExerciseTypeResponse> DeleteExerciseType(
             [FromBody] DeleteExerciseTypeRequest request,
