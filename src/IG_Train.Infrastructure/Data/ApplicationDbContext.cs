@@ -8,6 +8,8 @@ namespace IG_Train.Infrastructure.Data
     {
         public DbSet<ExerciseTypeEntity> ExerciseTypes { get; set; } = null!;
 
+        public DbSet<UserEntity> Users { get; set; } = null!;
+
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
             

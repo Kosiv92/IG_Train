@@ -1,7 +1,6 @@
 ﻿using IG_Train.Domain.Entities;
 using IG_Train.Domain.Repositories;
 using Microsoft.EntityFrameworkCore;
-using System.Threading;
 
 namespace IG_Train.Infrastructure.Data
 {
