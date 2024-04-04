@@ -13,12 +13,6 @@ internal class ApplicationMappingProfile : Profile
         CreateMap<UpdateExerciseTypeRequest, ExerciseTypeEntity>()
             .ForMember(d => d.Id, opt => opt.MapFrom(src => src.Id))
             .ForMember(d => d.Name, opt => opt.MapFrom(src => src.Name))
-            .ForMember(d => d.Description, opt => opt.MapFrom(src => src.Description));
-
-        //User map
-        CreateMap<CreateUserRequest, UserEntity>()
-            .ForMember(d => d.Name, opt => opt.MapFrom(src => src.Name))
-            .ForMember(d => d.Email, opt => opt.MapFrom(src => src.Email))
-            .ForMember(d => d.PasswordHash, opt => opt.MapFrom(src => src.PasswordHash));
+            .ForMember(d => d.Description, opt => opt.MapFrom(src => src.Description));              
     }
 }

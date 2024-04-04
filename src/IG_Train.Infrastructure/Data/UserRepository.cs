@@ -57,8 +57,7 @@ namespace IG_Train.Infrastructure.Data
                 .Where(et => et.Id == entity.Id)
                 .ExecuteUpdateAsync(et => et
                 .SetProperty(b => b.Name, b => entity.Name)
-                .SetProperty(b => b.PasswordHash, b => entity.PasswordHash)
-                .SetProperty(b => b.Email, b => entity.Email),
+                .SetProperty(b => b.PasswordHash, b => entity.PasswordHash),                
                 cancellationToken);
             return entity.Id;
         }
