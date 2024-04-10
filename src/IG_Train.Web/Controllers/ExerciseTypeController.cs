@@ -1,10 +1,12 @@
 ﻿using IG_Train.Application.Handlers.ExerciseType;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace IG_Train.Web.Controllers
-{    
+{
+    [Authorize]
     [ApiController]
     [Route("api/v1/[controller]")]
     public class ExerciseTypeController : ControllerBase
@@ -65,10 +67,11 @@ namespace IG_Train.Web.Controllers
         [SwaggerResponse(201, "The exercise type was created", typeof(CreateExerciseTypeResponse))]
         [SwaggerResponse(400, "The exercise type data is invalid")]        
         [HttpPost]
-        public ActionResult<Task<CreateExerciseTypeResponse>> CreateExerciseTypeAsync(
+        public async Task<ActionResult<CreateExerciseTypeResponse>> CreateExerciseTypeAsync(
             [FromBody] CreateExerciseTypeRequest request,
-            CancellationToken cancellationToken)            
-        => CreatedAtAction(nameof(CreateExerciseTypeAsync), request, _mediator.Send(request, cancellationToken));
+            CancellationToken cancellationToken)
+        //=> _mediator.Send(request, cancellationToken);
+        => CreatedAtAction(nameof(CreateExerciseTypeAsync), request, await _mediator.Send(request, cancellationToken));
 
         /// <summary>
         /// Update exist exercise type

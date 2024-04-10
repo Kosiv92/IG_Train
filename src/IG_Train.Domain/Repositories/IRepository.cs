@@ -17,4 +17,6 @@ public interface IRepository<TEntity, TKey> : IRepository
     public Task SaveChangesAsync(CancellationToken cancellationToken);
 
     public Task<TKey> UpdateAsync(TEntity entity, CancellationToken cancellationToken);
+
+    public Task<TEntity?> GetByCriteriaAsync(Func<TEntity, bool> searchCriteria, CancellationToken cancellationToken);
 }

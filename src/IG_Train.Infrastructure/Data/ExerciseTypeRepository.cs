@@ -38,6 +38,14 @@ namespace IG_Train.Infrastructure.Data
             return await _exerciseTypes
                 .AsNoTracking()
                 .ToListAsync(cancellationToken);
+        }    
+
+        public async Task<ExerciseTypeEntity?> GetByCriteriaAsync(Func<ExerciseTypeEntity, bool> searchCriteria, CancellationToken cancellationToken)
+        {
+            return await Task.Run(() =>
+            {
+                return _exerciseTypes.FirstOrDefault(searchCriteria);
+            }, cancellationToken);            
         }
 
         public async Task<ExerciseTypeEntity?> GetByIdAsync(int id, CancellationToken cancellationToken)

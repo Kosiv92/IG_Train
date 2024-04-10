@@ -18,7 +18,7 @@ namespace IG_Train.Infrastructure.Data
         public async Task<int> CreateAsync(UserEntity entity, CancellationToken cancellationToken)
         {
             await _users.AddAsync(entity, cancellationToken);
-            await SaveChangesAsync(cancellationToken);
+            await _context.SaveChangesAsync(cancellationToken);
             return entity.Id;
         }
 
@@ -46,9 +46,18 @@ namespace IG_Train.Infrastructure.Data
                 .FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
         }
 
-        public async Task SaveChangesAsync(CancellationToken cancellationToken)
+        public async Task<UserEntity?> GetByCriteriaAsync(Func<UserEntity, bool> searchCriteria, 
+            CancellationToken cancellationToken)
         {
-            await _context.SaveChangesAsync(cancellationToken);
+            return await Task.Run(() =>
+            {
+                return _users.FirstOrDefault(searchCriteria);
+            }, cancellationToken);
+        }
+
+        public Task SaveChangesAsync(CancellationToken cancellationToken)
+        {
+            return _context.SaveChangesAsync(cancellationToken);
         }
 
         public async Task<int> UpdateAsync(UserEntity entity, CancellationToken cancellationToken)

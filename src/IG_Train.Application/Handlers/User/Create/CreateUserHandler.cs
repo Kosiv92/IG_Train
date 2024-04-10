@@ -10,7 +10,6 @@ public class CreateUserHandler : IRequestHandler<CreateUserRequest, CreateUserRe
     private readonly IUserService _userService;
     private readonly IPasswordHasher _passwordHasher;
     
-
     public CreateUserHandler(IUserService userService, IPasswordHasher passwordHasher)
     {
         _userService = userService;
@@ -19,9 +18,12 @@ public class CreateUserHandler : IRequestHandler<CreateUserRequest, CreateUserRe
 
     public async Task<CreateUserResponse> Handle(CreateUserRequest request, CancellationToken cancellationToken)
     {
-        var hashedPassword = _passwordHasher.Generate(request.Password);                
+        var hashedPassword = _passwordHasher.Generate(request.Password);
 
-        return new CreateUserResponse(await _userService.CreateUser
-            (new UserEntity(default, request.Name, hashedPassword), cancellationToken));        
+        var newUserEntity = new UserEntity(default, request.Name, request.Email.ToLower(), hashedPassword);
+
+        int newUserId = await _userService.CreateUser(newUserEntity, cancellationToken);
+
+        return new CreateUserResponse(newUserId);        
     }
 }

@@ -12,9 +12,19 @@ namespace IG_Train.Domain.Services
             _userRepository = repository;
         }
 
-        public async Task<int> CreateUser(UserEntity exerciseType, CancellationToken cancellationToken)
+        public async Task<UserEntity?> GetUser(int id, CancellationToken cancellationToken)
         {
-            return await _userRepository.CreateAsync(exerciseType, cancellationToken);
+            return await _userRepository.GetByIdAsync(id, cancellationToken);
+        }
+
+        public async Task<UserEntity?> GetUserByEmail(string email, CancellationToken cancellationToken)
+        {
+            return await _userRepository.GetByCriteriaAsync(u => u.Email == email, cancellationToken);
+        }
+
+        public async Task<int> CreateUser(UserEntity userEntity, CancellationToken cancellationToken)
+        {
+            return await _userRepository.CreateAsync(userEntity, cancellationToken);
         }
 
         public async Task DeleteUser(int id, CancellationToken cancellationToken)
@@ -25,16 +35,11 @@ namespace IG_Train.Domain.Services
         public async Task<IEnumerable<UserEntity>> GetAllUsers(CancellationToken cancellationToken)
         {
             return await _userRepository.GetAllAsync(cancellationToken);
-        }
+        }                
 
-        public async Task<UserEntity?> GetUser(int id, CancellationToken cancellationToken)
+        public async Task<int> UpdateUser(UserEntity userEntity, CancellationToken cancellationToken)
         {
-            return await _userRepository.GetByIdAsync(id, cancellationToken);
-        }
-
-        public async Task<int> UpdateUser(UserEntity exerciseType, CancellationToken cancellationToken)
-        {
-            return await _userRepository.UpdateAsync(exerciseType, cancellationToken);
+            return await _userRepository.UpdateAsync(userEntity, cancellationToken);
         }
     }
 }

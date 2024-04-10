@@ -1,7 +1,7 @@
 ﻿
 namespace IG_Train.Application.Handlers.User
 {
-    internal class LoginUserResponse
+    public record LoginUserResponse(string Token)
     {
     }
 }

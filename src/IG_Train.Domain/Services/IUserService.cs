@@ -4,7 +4,7 @@ using IG_Train.Domain.Services.Common;
 namespace IG_Train.Domain.Services
 {    public interface IUserService : ITransientService
     {
-        Task<int> CreateUser(UserEntity exerciseType, CancellationToken cancellationToken);
+        Task<int> CreateUser(UserEntity userEntity, CancellationToken cancellationToken);
 
         Task DeleteUser(int id, CancellationToken cancellationToken);
 
@@ -12,6 +12,8 @@ namespace IG_Train.Domain.Services
 
         Task<UserEntity?> GetUser(int id, CancellationToken cancellationToken);
 
-        Task<int> UpdateUser(UserEntity exerciseType, CancellationToken cancellationToken);
+        Task<UserEntity?> GetUserByEmail(string email, CancellationToken cancellationToken);
+
+        Task<int> UpdateUser(UserEntity userEntity, CancellationToken cancellationToken);
     }
 }

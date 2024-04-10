@@ -1,16 +1,20 @@
 ﻿using FluentValidation;
 using FluentValidation.AspNetCore;
 using IG_Train.Application;
+using IG_Train.Application.Identity;
 using IG_Train.Domain;
 using IG_Train.Domain.Repositories.Common;
 using IG_Train.Domain.Services.Common;
 using IG_Train.Infrastructure;
 using IG_Train.Infrastructure.Data;
-using MediatR.Extensions.FluentValidation.AspNetCore;
+using IG_Train.Web.Identity;
+using IG_Train.Web.Models;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
+using System.Text;
 
 namespace IG_Train.Web.Extensions;
 
@@ -119,6 +123,35 @@ public static class ServiceCollectionExtensions
             typeof(IApplicationAssembly).Assembly,
             typeof(IInfrastructureAssembly).Assembly,
             typeof(IDomainAssembly).Assembly));
+
+        return services;
+    }
+
+    internal static IServiceCollection AddAuthService(this IServiceCollection services, IConfiguration configuration)
+    {        
+        var jwtIssuer = configuration.GetSection("JWTTokenConfiguration:Issuer").Get<string>();
+        var jwtKey = configuration.GetSection("JWTTokenConfiguration:Key").Get<string>();                
+
+        services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            .AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidIssuer = jwtIssuer,
+                    ValidAudience = jwtIssuer,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey))
+                };
+            });
+
+        services.Configure<JWTTokenConfiguration>(configuration.GetSection("JWTTokenConfiguration"));
+
+        services.AddTransient<IPasswordHasher, PasswordHasher>();
+        services.AddTransient<ITokenGenerator, JWTTokenGenerator>();
+        services.AddTransient<ITokenConfiguration, JWTTokenConfiguration>();
 
         return services;
     }
