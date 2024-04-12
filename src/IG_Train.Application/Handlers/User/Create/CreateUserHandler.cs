@@ -20,7 +20,7 @@ public class CreateUserHandler : IRequestHandler<CreateUserRequest, CreateUserRe
     {
         var hashedPassword = _passwordHasher.Generate(request.Password);
 
-        var newUserEntity = new UserEntity(default, request.Name, request.Email.ToLower(), hashedPassword);
+        var newUserEntity = new UserEntity(default, request.Name, request.Email.ToLowerInvariant(), hashedPassword);
 
         int newUserId = await _userService.CreateUser(newUserEntity, cancellationToken);
 

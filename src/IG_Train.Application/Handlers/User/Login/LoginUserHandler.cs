@@ -23,7 +23,7 @@ namespace IG_Train.Application.Handlers.User
 
         public async Task<LoginUserResponse> Handle(LoginUserRequest request, CancellationToken cancellationToken)
         {
-            var user = await _userService.GetUserByEmail(request.Email, cancellationToken);
+            var user = await _userService.GetUserByEmail(request.Email.ToLowerInvariant(), cancellationToken);
             if (user == null) throw new NotFoundException(nameof(UserEntity), request.Email);
 
             if (!_passwordHasher.Verify(request.Password, user.PasswordHash)) throw new WrongPasswordException();

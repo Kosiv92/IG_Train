@@ -1,4 +1,7 @@
-﻿namespace IG_Train.Domain.Entities;
+﻿using System.Linq.Expressions;
+using System.Runtime.CompilerServices;
+
+namespace IG_Train.Domain.Entities;
 
 public abstract class BaseEntity<TKey>
 {
@@ -7,5 +10,5 @@ public abstract class BaseEntity<TKey>
         Id = key;
     }
 
-    public TKey Id { get; }
+    public TKey Id { get; }        
 }

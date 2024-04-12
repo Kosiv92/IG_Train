@@ -1,6 +1,7 @@
 ﻿using IG_Train.Domain.Entities;
 using IG_Train.Domain.Repositories;
 using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
 namespace IG_Train.Infrastructure.Data
 {
@@ -46,13 +47,15 @@ namespace IG_Train.Infrastructure.Data
                 .FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
         }
 
-        public async Task<UserEntity?> GetByCriteriaAsync(Func<UserEntity, bool> searchCriteria, 
+        public async Task<UserEntity?> GetByCriteriaAsync(Expression<Func<UserEntity, bool>> searchCriteria,
             CancellationToken cancellationToken)
         {
-            return await Task.Run(() =>
-            {
-                return _users.FirstOrDefault(searchCriteria);
-            }, cancellationToken);
+            return await _users.FirstOrDefaultAsync(searchCriteria, cancellationToken);
+
+            //return await Task.Run(() =>
+            //{
+            //    return _users.FirstOrDefault(searchCriteria);
+            //}, cancellationToken);
         }
 
         public Task SaveChangesAsync(CancellationToken cancellationToken)
