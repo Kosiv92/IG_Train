@@ -1,6 +1,5 @@
 ﻿using FluentValidation;
 using IG_Train.Application.Handlers.ExerciseType;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace IG_Train.Application.Validators;
 

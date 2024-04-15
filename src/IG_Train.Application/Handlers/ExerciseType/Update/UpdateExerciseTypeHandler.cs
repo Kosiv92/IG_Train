@@ -20,6 +20,8 @@ public class UpdateExerciseTypeHandler : IRequestHandler<UpdateExerciseTypeReque
     {
         var entity = _mapper.Map<ExerciseTypeEntity>(request);
 
-        return new UpdateExerciseTypeResponse(await _exerciseTypeService.UpdateExerciseType(entity, cancellationToken));
+        int updatedEntityId = await _exerciseTypeService.UpdateExerciseType(entity, cancellationToken);
+
+        return new UpdateExerciseTypeResponse(updatedEntityId);
     }
 }

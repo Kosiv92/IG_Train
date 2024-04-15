@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 
-
-namespace IG_Train.Tests.Unit.Application.Validators.ClassData
+namespace IG_Train.Tests.Unit.Application.TestData
 {
     public class CreateExerciseTypeRequestTestData : IEnumerable<object?[]>
     {
@@ -16,6 +15,6 @@ namespace IG_Train.Tests.Unit.Application.Validators.ClassData
             yield return new object?[] { "", "", false };
         }
 
-        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();                
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }
 }
