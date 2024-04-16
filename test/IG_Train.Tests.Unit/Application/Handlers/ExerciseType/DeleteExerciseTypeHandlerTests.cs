@@ -1,6 +1,7 @@
 ﻿using AutoFixture;
 using FluentAssertions;
 using IG_Train.Application.Handlers.ExerciseType;
+using IG_Train.Domain.Entities;
 using IG_Train.Domain.Services;
 using Moq;
 using Xunit;
@@ -28,6 +29,11 @@ namespace IG_Train.Tests.Unit.Application.Handlers
             // Assert
             result.Should().NotBeNull();
             result.Should().Be(response);
+            mock.Verify(d => d.CreateExerciseType(It.IsAny<ExerciseTypeEntity>(), default), Times.Never);
+            mock.Verify(d => d.GetExerciseType(It.IsAny<int>(), default), Times.Never);
+            mock.Verify(d => d.GetAllExerciseTypes(default), Times.Never);
+            mock.Verify(d => d.UpdateExerciseType(It.IsAny<ExerciseTypeEntity>(), default), Times.Never);
+            mock.Verify(d => d.DeleteExerciseType(It.IsAny<int>(), default), Times.Once);
         }
     }
 }
