@@ -9,7 +9,7 @@ public class ExerciseTypeEntity : BaseEntity<int>
         Description = description;
     }
 
-    public string Name { get; private set; }
+    public string Name { get; set; }
 
-    public string Description { get; private set; }
+    public string Description { get; set; }
 }

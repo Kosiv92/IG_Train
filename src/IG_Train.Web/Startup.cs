@@ -14,15 +14,15 @@ public class Startup
     public void ConfigureServices(IServiceCollection serviceCollection)
     {
         serviceCollection.AddControllers();
-        serviceCollection.AddEndpointsApiExplorer();
-        serviceCollection.AddSwaggerGen();
 
+        serviceCollection.AddApiExploreService();
         serviceCollection.AddAutoMapping();
         serviceCollection.AddDbContexts(_configuration);
         serviceCollection.AddServices();
         serviceCollection.AddRepositories();
         serviceCollection.AddValidation();
         serviceCollection.AddMediatr();
+        serviceCollection.AddAuthService(_configuration);
     }
 
     public void Configure(IApplicationBuilder applicationBuilder, IWebHostEnvironment env)
@@ -32,8 +32,11 @@ public class Startup
         {
             applicationBuilder.UseSwagger();
             applicationBuilder.UseSwaggerUI();
+            applicationBuilder.ApplyMigrations();
         }        
         applicationBuilder.UseHttpsRedirection();
+
+        applicationBuilder.UseAuthentication();
         applicationBuilder.UseAuthorization();
 
         applicationBuilder.UseEndpoints(endpoints =>

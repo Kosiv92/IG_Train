@@ -1,5 +1,6 @@
 ﻿using IG_Train.Domain.Entities;
 using IG_Train.Domain.Repositories.Common;
+using System.Linq.Expressions;
 
 namespace IG_Train.Domain.Repositories;
 
@@ -17,4 +18,7 @@ public interface IRepository<TEntity, TKey> : IRepository
     public Task SaveChangesAsync(CancellationToken cancellationToken);
 
     public Task<TKey> UpdateAsync(TEntity entity, CancellationToken cancellationToken);
+
+    public Task<TEntity?> GetByCriteriaAsync(Expression<Func<TEntity, bool>> searchCriteria, CancellationToken cancellationToken);
+
 }

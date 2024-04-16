@@ -1,7 +1,7 @@
 ﻿using IG_Train.Domain.Entities;
 using IG_Train.Domain.Repositories;
 using Microsoft.EntityFrameworkCore;
-using System.Threading;
+using System.Linq.Expressions;
 
 namespace IG_Train.Infrastructure.Data
 {
@@ -39,6 +39,19 @@ namespace IG_Train.Infrastructure.Data
             return await _exerciseTypes
                 .AsNoTracking()
                 .ToListAsync(cancellationToken);
+        }    
+
+        public async Task<ExerciseTypeEntity?> GetByCriteriaAsync(Expression<Func<ExerciseTypeEntity, bool>> searchCriteria, CancellationToken cancellationToken)
+        {
+            return await Task.Run(() =>
+            {
+                return _exerciseTypes.FirstOrDefault(searchCriteria);
+            }, cancellationToken);            
+        }
+
+        public Task<UserEntity?> GetByCriteriaAsync<T>(T entityMember, T searchCriteria, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
         }
 
         public async Task<ExerciseTypeEntity?> GetByIdAsync(int id, CancellationToken cancellationToken)
