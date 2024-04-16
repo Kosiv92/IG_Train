@@ -11,8 +11,9 @@ namespace IG_Train.Infrastructure.Configurations
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Name)
                 .IsRequired();
-            builder.Property(x => x.Email)
+            builder.Property(x => x.Email)                
                 .IsRequired();
+            builder.HasIndex(x => x.Email);
             builder.Property(x => x.PasswordHash)
                 .IsRequired();            
         }
