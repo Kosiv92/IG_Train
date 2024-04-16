@@ -2,6 +2,6 @@
 
 namespace IG_Train.Application.Handlers.ExerciseType;
 
-public class GetExerciseTypeRequest : IRequest<GetExerciseTypeResponse>
+public record GetExerciseTypeRequest(int Id) : IRequest<GetExerciseTypeResponse>
 {
 }

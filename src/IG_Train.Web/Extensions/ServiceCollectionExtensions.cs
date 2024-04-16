@@ -1,18 +1,82 @@
 ﻿using FluentValidation;
 using FluentValidation.AspNetCore;
 using IG_Train.Application;
+using IG_Train.Application.Identity;
 using IG_Train.Domain;
 using IG_Train.Domain.Repositories.Common;
 using IG_Train.Domain.Services.Common;
 using IG_Train.Infrastructure;
 using IG_Train.Infrastructure.Data;
-using MediatR.Extensions.FluentValidation.AspNetCore;
+using IG_Train.Web.Identity;
+using IG_Train.Web.Models;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
+using System.Reflection;
+using System.Text;
 
 namespace IG_Train.Web.Extensions;
 
 public static class ServiceCollectionExtensions
 {
+    internal static IServiceCollection AddApiExploreService(this IServiceCollection services)
+    {
+        services.AddEndpointsApiExplorer();
+        services.AddSwaggerGen(options =>
+        {
+            options.SwaggerDoc("v1", new OpenApiInfo
+            {
+                Version = "v1",
+                Title = "IronGarage API",
+                Description = "An ASP.NET Core Web API for storing training data",
+                Contact = new OpenApiContact
+                {
+                    Name = "Konstantin Sivkov",
+                    Email = "kosiv92@gmail.com"
+                },
+                License = new OpenApiLicense
+                {
+                    Name = "MIT License",
+                    Url = new Uri("https://opensource.org/license/mit")
+                }
+            });
+
+            var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+            options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
+
+            options.EnableAnnotations();
+
+            options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+            {
+                In = ParameterLocation.Header,
+                Description = "Please enter token",
+                Name = "Authorization",
+                Type = SecuritySchemeType.Http,
+                BearerFormat = "JWT",
+                Scheme = "bearer"
+            });
+
+            options.AddSecurityRequirement(new OpenApiSecurityRequirement
+            {
+                {
+                    new OpenApiSecurityScheme
+                    {
+                    Reference = new OpenApiReference
+                        {
+                        Type = ReferenceType.SecurityScheme,
+                        Id="Bearer"
+                        }
+                    },
+                    new string[]{ }
+                }
+            });
+        });
+
+        return services;
+    }
+
+
     internal static IServiceCollection AddAutoMapping(this IServiceCollection services) 
     {
         services.AddAutoMapper(
@@ -84,6 +148,35 @@ public static class ServiceCollectionExtensions
             typeof(IApplicationAssembly).Assembly,
             typeof(IInfrastructureAssembly).Assembly,
             typeof(IDomainAssembly).Assembly));
+
+        return services;
+    }
+
+    internal static IServiceCollection AddAuthService(this IServiceCollection services, IConfiguration configuration)
+    {        
+        var jwtIssuer = configuration.GetSection("JWTTokenConfiguration:Issuer").Get<string>();
+        var jwtKey = configuration.GetSection("JWTTokenConfiguration:Key").Get<string>();                
+
+        services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            .AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidIssuer = jwtIssuer,
+                    ValidAudience = jwtIssuer,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey))
+                };
+            });
+
+        services.Configure<JWTTokenConfiguration>(configuration.GetSection("JWTTokenConfiguration"));
+
+        services.AddTransient<IPasswordHasher, PasswordHasher>();
+        services.AddTransient<ITokenGenerator, JWTTokenGenerator>();
+        services.AddTransient<ITokenConfiguration, JWTTokenConfiguration>();
 
         return services;
     }

@@ -17,7 +17,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IG_Train.Infrastructure", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IG_Train.Web", "src\IG_Train.Web\IG_Train.Web.csproj", "{BB2ABBC4-7132-4326-8EAC-6003F9B7A75B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IG_Train.Tests.Unit", "test\IG_Train.Tests.Unit\IG_Train.Tests.Unit.csproj", "{927B2706-783C-4BC1-9072-C824BAB222E7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IG_Train.Tests.Unit", "test\IG_Train.Tests.Unit\IG_Train.Tests.Unit.csproj", "{927B2706-783C-4BC1-9072-C824BAB222E7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{DEDF79F6-C9D3-4BB9-9A91-E4072E5374DB}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

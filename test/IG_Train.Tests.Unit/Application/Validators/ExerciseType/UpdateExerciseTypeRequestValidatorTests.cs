@@ -1,10 +1,8 @@
-﻿using AutoFixture.Xunit2;
-using AutoFixture;
-using IG_Train.Application.Handlers.ExerciseType;
+﻿using IG_Train.Application.Handlers.ExerciseType;
 using IG_Train.Application.Validators;
 using Xunit;
 using FluentAssertions;
-using IG_Train.Tests.Unit.Application.Validators.ClassData;
+using IG_Train.Tests.Unit.Application.TestData;
 
 namespace IG_Train.Tests.Unit.Application.Validators
 {
