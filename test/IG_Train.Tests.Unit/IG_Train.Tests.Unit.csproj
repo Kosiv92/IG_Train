@@ -27,10 +27,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\IG_Train.Application\IG_Train.Application.csproj" />
-    <ProjectReference Include="..\..\src\IG_Train.Domain\IG_Train.Domain.csproj" />
-    <ProjectReference Include="..\..\src\IG_Train.Infrastructure\IG_Train.Infrastructure.csproj" />
-    <ProjectReference Include="..\..\src\IG_Train.Web\IG_Train.Web.csproj" />
+    <ProjectReference Include="..\..\src\backend\IG_Train.Application\IG_Train.Application.csproj" />
+    <ProjectReference Include="..\..\src\backend\IG_Train.Domain\IG_Train.Domain.csproj" />
+    <ProjectReference Include="..\..\src\backend\IG_Train.Infrastructure\IG_Train.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\src\backend\IG_Train.Web\IG_Train.Web.csproj" />    
   </ItemGroup>
 
 </Project>

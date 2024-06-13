@@ -5,7 +5,7 @@ services:
     container_name: ig.web
     image: ${DOCKER_REGISTRY-}igtrainweb
     build:
-      context: ./src
+      context: ./src/backend
       dockerfile: IG_Train.Web/Dockerfile
     depends_on:
         - postgres
@@ -22,6 +22,6 @@ services:
         POSTGRES_USER: "postgres"
         POSTGRES_PASSWORD: "postgres"
     volumes:
-        - ./volumes/data/db:/var/lib/postgresql/data
+        - ././volumes/data/db:/var/lib/postgresql/data
     ports:
         - "5432:5432"
