@@ -22,6 +22,7 @@ public class Startup
         serviceCollection.AddRepositories();
         serviceCollection.AddValidation();
         serviceCollection.AddMediatr();
+        serviceCollection.AddProblemDetails();
         serviceCollection.AddAuthService(_configuration);
     }
 
@@ -33,7 +34,11 @@ public class Startup
             applicationBuilder.UseSwagger();
             applicationBuilder.UseSwaggerUI();
             applicationBuilder.ApplyMigrations();
-        }        
+        }
+        if (env.IsDevelopment())
+        {
+            applicationBuilder.UseExceptionHandler();
+        }
         applicationBuilder.UseHttpsRedirection();
 
         applicationBuilder.UseAuthentication();
